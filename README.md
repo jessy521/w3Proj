@@ -1,7 +1,7 @@
 # w3Proj
-Dir---|
-      |--backend(audio-backend) done with NestJs and Mongo
-      |--frontend(audio-dashboard) done with React
+Dir  
+|--backend(audio-backend) done with NestJs and Mongo
+|--frontend(audio-dashboard) done with React
 
 
 web view:
