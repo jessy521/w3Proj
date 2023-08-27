@@ -20,6 +20,7 @@ import path = require('path');
 import { v4 as uuidv4 } from 'uuid';
 import { Response } from 'express';
 
+// storage to store the
 export const audioStorage = {
   storage: diskStorage({
     destination: './uploads/songs',
@@ -33,11 +34,13 @@ export const audioStorage = {
   }),
 };
 
+// controller for routes
 @Controller('audio')
 export class AudioController {
   constructor(private readonly audioService: AudioService) {}
 
   @Post()
+  // post api to create an audio document
   @UseInterceptors(FileInterceptor('file', audioStorage))
   async create(@Body() createAudioDto: CreateAudioDto, @UploadedFile() file) {
     console.log(file);
@@ -45,11 +48,13 @@ export class AudioController {
   }
 
   @Get()
+  // api to get all the documents
   findAll() {
     return this.audioService.findAll();
   }
 
   @Post('upload')
+  // api to upload files
   @UseInterceptors(AnyFilesInterceptor(audioStorage))
   async uploadFile(
     // @Body() createAudioDto: CreateAudioDto,
@@ -60,6 +65,7 @@ export class AudioController {
   }
 
   @Get('uploads/songs/:name')
+  // api to get an audio
   async getFile(@Param('name') name: string, @Res() res: Response) {
     console.log(name);
     return this.audioService.getFile(name, res);

@@ -14,17 +14,20 @@ const { getAudioDurationInSeconds } = require('get-audio-duration');
 
 @Injectable()
 export class AudioService {
+  // it's thr default constructor
   constructor(
     @Inject('AUDIO_MODEL')
     private audioModel: Model<Audio>,
   ) {}
 
+  // function to create a new document
   async create(createAudioDto: CreateAudioDto): Promise<Audio> {
     // console.log(file);
     const createdCat = new this.audioModel(createAudioDto);
     return createdCat.save();
   }
 
+  // function to get the extension
   getFileExtension(filename: string): string {
     console.log(filename);
     const extension = filename.substring(
@@ -34,6 +37,7 @@ export class AudioService {
     return extension;
   }
 
+  // function to upload files
   async upload(files: any, res: Response) {
     try {
       let arrayToUpload = [];
@@ -59,6 +63,7 @@ export class AudioService {
       });
 
       Promise.all(promises).then(async () => {
+        //after the promises we are uploading them on DB
         if (await this.checkDuration(arrayToUpload)) {
           this.audioModel.insertMany(arrayToUpload);
           res.status(201).send('Success');
@@ -69,12 +74,14 @@ export class AudioService {
     }
   }
 
+  // function to get all the documents from the DB
   async findAll(): Promise<Audio[]> {
     return this.audioModel.find().exec();
   }
 
+  // function to calculate the durations
   async checkDuration(arrayToUpload: any) {
-    let sumOfDuration = await this.audioModel
+    let sumOfDuration = await this.audioModel //mongoDB aggregation
       .aggregate([
         { $match: {} },
         { $group: { _id: null, sum: { $sum: '$duration' } } },
@@ -93,9 +100,18 @@ export class AudioService {
     } else return 1;
   }
 
+  // function to get the exact audio file
   async getFile(fileName: string, res: Response) {
-    const filePath = path.join(__dirname, '../../../uploads/songs/', fileName);
-    console.log(filePath);
-    res.sendFile(filePath);
+    try {
+      const filePath = path.join(
+        __dirname,
+        '../../../uploads/songs/',
+        fileName,
+      );
+      console.log(filePath);
+      res.sendFile(filePath);
+    } catch (err) {
+      throw new ForbiddenException();
+    }
   }
 }
