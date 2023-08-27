@@ -20,13 +20,13 @@ import path = require('path');
 import { v4 as uuidv4 } from 'uuid';
 import { Response } from 'express';
 
-// storage to store the
+// Storage configuration for uploaded audio files
 export const audioStorage = {
   storage: diskStorage({
-    destination: './uploads/songs',
+    destination: './uploads/songs', // Destination directory for storing files
     filename: (req, file, cb) => {
       const filename: string =
-        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4(); // Generate a unique filename
       const extension: string = path.parse(file.originalname).ext;
 
       cb(null, `${filename}${extension}`);
@@ -34,40 +34,40 @@ export const audioStorage = {
   }),
 };
 
-// controller for routes
+// Controller for audio-related routes
 @Controller('audio')
 export class AudioController {
   constructor(private readonly audioService: AudioService) {}
 
   @Post()
-  // post api to create an audio document
-  @UseInterceptors(FileInterceptor('file', audioStorage))
+  // API endpoint to create an audio document
+  @UseInterceptors(FileInterceptor('file', audioStorage)) // Intercept and store the uploaded file
   async create(@Body() createAudioDto: CreateAudioDto, @UploadedFile() file) {
-    console.log(file);
+    // console.log(file); // Log the uploaded file details
     return this.audioService.create(createAudioDto);
   }
 
   @Get()
-  // api to get all the documents
+  // API endpoint to get all audio documents
   findAll() {
     return this.audioService.findAll();
   }
 
   @Post('upload')
-  // api to upload files
-  @UseInterceptors(AnyFilesInterceptor(audioStorage))
+  // API endpoint to upload multiple files
+  @UseInterceptors(AnyFilesInterceptor(audioStorage)) // Intercept and store multiple uploaded files
   async uploadFile(
     // @Body() createAudioDto: CreateAudioDto,
-    @UploadedFiles() files: Array<Express.Multer.File>,
+    @UploadedFiles() files: Array<Express.Multer.File>, // Uploaded files array
     @Res() res: Response,
   ) {
-    return this.audioService.upload(files, res);
+    return this.audioService.upload(files, res); // Call the service function to handle upload
   }
 
   @Get('uploads/songs/:name')
-  // api to get an audio
+  // API endpoint to get a specific audio file
   async getFile(@Param('name') name: string, @Res() res: Response) {
-    console.log(name);
-    return this.audioService.getFile(name, res);
+    // console.log(name); // Log the requested audio file name
+    return this.audioService.getFile(name, res); // Call the service function to serve the file
   }
 }

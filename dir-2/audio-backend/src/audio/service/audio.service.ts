@@ -14,7 +14,7 @@ const { getAudioDurationInSeconds } = require('get-audio-duration');
 
 @Injectable()
 export class AudioService {
-  // it's thr default constructor
+  // Constructor that injects the Audio model (database) dependency
   constructor(
     @Inject('AUDIO_MODEL')
     private audioModel: Model<Audio>,
@@ -22,12 +22,11 @@ export class AudioService {
 
   // function to create a new document
   async create(createAudioDto: CreateAudioDto): Promise<Audio> {
-    // console.log(file);
     const createdCat = new this.audioModel(createAudioDto);
     return createdCat.save();
   }
 
-  // function to get the extension
+  // Function to extract file extension from a filename
   getFileExtension(filename: string): string {
     console.log(filename);
     const extension = filename.substring(
@@ -37,7 +36,7 @@ export class AudioService {
     return extension;
   }
 
-  // function to upload files
+  // Function to upload audio files and store their data in the database
   async upload(files: any, res: Response) {
     try {
       let arrayToUpload = [];
@@ -79,8 +78,9 @@ export class AudioService {
     return this.audioModel.find().exec();
   }
 
-  // function to calculate the durations
+  // Function to calculate the total duration and check if it's within limit
   async checkDuration(arrayToUpload: any) {
+    // Calculate sum of duration from existing records
     let sumOfDuration = await this.audioModel //mongoDB aggregation
       .aggregate([
         { $match: {} },
@@ -90,14 +90,16 @@ export class AudioService {
         return res[0] ? res[0].sum : 0;
       });
 
+    // Calculate sum of durations from uploaded files
     const sumOfUploadedDuration = arrayToUpload.reduce(
       (sum, file) => sum + file.duration,
       0,
     );
-    console.log(sumOfUploadedDuration + ' ' + sumOfDuration);
+    // console.log(sumOfUploadedDuration + ' ' + sumOfDuration);
+    // Compare total durations and return result
     if (sumOfUploadedDuration + sumOfDuration >= 600) {
-      return 0;
-    } else return 1;
+      return 0; // Exceeds the limit
+    } else return 1; // Within limit
   }
 
   // function to get the exact audio file
