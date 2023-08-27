@@ -32,12 +32,12 @@ for server side we've used NestJs and MongoDB for storing the database this is o
 <img width="529" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/b8f688c9-d4b6-43b1-a06d-19c5f33f5ed2">
 
 
-### documents demo: <br/>
+### Documents demo in mongoDB: <br/>
 <img width="606" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/4a6e6d1a-c08a-4e82-b39d-b62338a8c8e6">
 
 
 
 
 
-### for now storage are used the backend folders only:<br/>
+### For now backend folders are used as storage only:<br/>
 <img width="248" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/aad11e05-9471-4041-97ae-ce16729c9b12">
