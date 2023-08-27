@@ -6,7 +6,7 @@
 <br/>
 <br/>
 
-> [!NOTE]
+> [!WARNING]
 > **backend is running on port 3001**
 > **frontend is running on port 3000**
 <br/>
