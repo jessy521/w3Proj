@@ -13,10 +13,11 @@ web view:
 WE've to choose file by tapping "choose file" button then we've to upload them by "upload" butoon
 If total files duration (in the database and i.e uploading) is greater than 60 minutes then we'll get error
 else it will upload files to database and we can get data by refreshing the page
-<img width="1268" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/8caff9dd-03b7-4453-82f7-1a98f17b17cf">
+<img width="1268" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/5643157a-b31f-41c6-ae4a-71c63bed8b03">
+
 
 we can also play the song with play button shown at the right if the screen.
-
+we can also delte the song eith action button
 server:
 
 for server side we've used NestJs and MongoDB for storing the database
