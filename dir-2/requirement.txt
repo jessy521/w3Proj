@@ -1,0 +1,17 @@
+backend:
+    install packages : npm i
+    build: npm run build
+    run : npm run start:dev
+
+frontend:
+    install packages: npm i
+    run npm start
+
+database:
+    MongoDB localhost
+    to run the backend local device have to be set with MongoDB
+    else we can change the mongoURL
+        go 'dir-2/audio-backend/src/database/database.provider.ts' 
+        and change the  url inside 
+            "mongoose.connect('mongodb://localhost:27017/threeway'),"
+        
