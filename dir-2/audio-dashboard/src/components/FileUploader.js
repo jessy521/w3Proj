@@ -22,7 +22,7 @@ const FileUploader = ({ onUpload }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom:"25px" }}>
       <input type="file" multiple accept="audio/*" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
+      <button class="btn btn-primary btn-sm" onClick={handleUpload}>Upload</button>
     </div>
   );
 };
