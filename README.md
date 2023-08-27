@@ -7,7 +7,8 @@ Dir
 # To know about how to run the code and the required commands go requirements.txt
 
 web view:
-<img width="1263" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/4290f872-15a9-4d8b-82bd-3d2558c8ca00">
+<img width="1280" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/daeb1c88-c9bc-4ca0-9a12-2335a4a7dba0">
+
 
 
 WE've to choose file by tapping "choose file" button then we've to upload them by "upload" butoon
