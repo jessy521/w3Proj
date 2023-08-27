@@ -15,6 +15,38 @@ const AudioList = () => {
       console.log((audioRef.current.duration/60).toFixed(2));
     }
   };
+   
+
+    const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/audio");
+      setFiles(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  // Handle to delete
+  const handleDelete = async (songId) => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/api/audio/delete/song/${songId}`);
+      console.log(response.data.message);
+
+      if (response.status === 200) {
+        alert('File has deleted, refresh your page!')
+      }
+
+      // After successful delete, fetch updated data
+      fetchData();
+    } catch (error) {
+      console.error('Error deleting song:', error);
+    }
+  };
   
 
  // Fetching data from the API and setting it in the 'files' state
@@ -39,6 +71,7 @@ const AudioList = () => {
         <th scope="col">Size</th>
         <th scope="col">Date of upload</th>
         <th scope="col">Play</th>
+        <th scope="col">Actions</th> 
       </tr>
     </thead>
         <tbody>
@@ -46,8 +79,8 @@ const AudioList = () => {
           {files.map((file, index) => (
         <tr key={index}>
           <th style={{ borderBottom: "none" }} scope="row">{index + 1}</th>
-              <td style={{ borderBottom: "none" }}>{file.name}</td>
-              <td style={{ borderBottom: "none" }}>{file.duration.toFixed(2)} Seconds</td>
+          <td style={{ borderBottom: "none" }}>{file.name}</td>
+          <td style={{ borderBottom: "none" }}>{file.duration.toFixed(2)} Seconds</td>
           <td style={{ borderBottom: "none" }}>{file.fileSize} bytes</td>
           <td style={{ borderBottom: "none" }}>{new Date(file.dateOfUpload).toLocaleDateString()}</td>
           <td style={{ borderBottom: "none" ,width:"10%"}}>
@@ -67,7 +100,10 @@ const AudioList = () => {
                 ></progress>
               </div>
             </div>
-          </td>
+              </td>
+              <td style={{ borderBottom: "none" }}>
+                <button class="btn btn-danger" onClick={() => handleDelete(file._id)}>Delete</button>
+              </td>
         </tr>
       ))}
     </tbody>
