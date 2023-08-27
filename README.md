@@ -1,8 +1,8 @@
 # w3Proj
 **Dir-2**<br />
-  -backend(audio-backend) done with NestJs and Mongo<br />
-  -frontend(audio-dashboard) done with React<br />
-  -requirement.txt
+  |-backend(audio-backend) done with NestJs and Mongo<br />
+  |-frontend(audio-dashboard) done with React<br />
+  |-requirement.txt
 
 > [!NOTE]
 > **backend is running on port 3001**
