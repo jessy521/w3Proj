@@ -21,12 +21,16 @@ we can also play the song with play button shown at the right if the screen.
 we can also delte the song eith action button
 server:
 
-for server side we've used NestJs and MongoDB for storing the database
-this is our schema ,which is followed to store JSON in database
+for server side we've used NestJs and MongoDB for storing the database this is our schema ,which is followed to store JSON in database
+
+
 <img width="529" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/b8f688c9-d4b6-43b1-a06d-19c5f33f5ed2">
 
 
 documents demo:
+
+
+
 <img width="606" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/4a6e6d1a-c08a-4e82-b39d-b62338a8c8e6">
 
 
