@@ -46,7 +46,11 @@ const App = () => {
               closeOnClick: true,
               pauseOnHover: true,
               theme: "light",
-              });
+            });
+            setTimeout(() => {
+          window.location.reload();
+        }, 5000); 
+            
           }else {
             throw new Error('Reduce files');
           } 
