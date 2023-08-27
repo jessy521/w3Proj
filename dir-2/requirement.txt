@@ -3,9 +3,19 @@ backend:
     build: npm run build
     run : npm run start:dev
 
+    demo:-
+        cd ./audio-backend
+        npm i
+        npm run start:dev
+
 frontend:
     install packages: npm i
     run npm start
+
+    demo:-
+        cd ./audio-dashboard
+        npm i
+        npm run start
 
 database:
     MongoDB localhost
