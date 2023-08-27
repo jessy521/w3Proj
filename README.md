@@ -3,8 +3,9 @@
   -backend(audio-backend) done with NestJs and Mongo
   -frontend(audio-dashboard) done with React
 
-**backend is running on port 3001**
-**frontend is running on port 3000**
+> [!NOTE]
+> **backend is running on port 3001**
+> **frontend is running on port 3000**
 
 
 # To know about how to run the code and the required commands go requirements.txt
