@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   FileTypeValidator,
   Get,
   MaxFileSizeValidator,
@@ -69,5 +70,12 @@ export class AudioController {
   async getFile(@Param('name') name: string, @Res() res: Response) {
     // console.log(name); // Log the requested audio file name
     return this.audioService.getFile(name, res); // Call the service function to serve the file
+  }
+
+  @Delete('delete/song/:id')
+  // API endpoint to delete a specific audio file
+  async deleteFile(@Param('id') id: string, @Res() res: Response) {
+    // console.log(name); // Log the requested audio file name
+    return this.audioService.deleteFile(id, res); // Call the service function to serve the file
   }
 }

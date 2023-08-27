@@ -5,12 +5,14 @@ import {
   ForbiddenException,
   HttpException,
   HttpStatus,
+  NotFoundException,
 } from '@nestjs/common';
 import { Audio } from '../interface/audio.interface';
 import { CreateAudioDto } from '../dto/create.audio';
 const path = require('path');
 import { Response } from 'express';
 const { getAudioDurationInSeconds } = require('get-audio-duration');
+var fs = require('fs');
 
 @Injectable()
 export class AudioService {
@@ -113,6 +115,39 @@ export class AudioService {
       console.log(filePath);
       res.sendFile(filePath);
     } catch (err) {
+      throw new ForbiddenException();
+    }
+  }
+
+  // Function to delete a document and the respected file from storage
+  async deleteFile(id: string, res: Response) {
+    try {
+      // Find the audio document by its ID
+      const doc = await this.audioModel.findById({ _id: id });
+
+      // If the document doesn't exist, return a 404 response
+      if (!doc) {
+        res.status(404).send('Invalid Id');
+      }
+
+      // Delete the audio document by its ID
+      await this.audioModel.findByIdAndDelete({ _id: id });
+
+      // Construct the file path to the audio source
+      const filePath = path.join(__dirname, '../../../', doc.src);
+
+      // Delete the corresponding audio file from the file system
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        // If deletion is successful, send a success response
+        res.status(200).send('File deleted successfully');
+      });
+    } catch (error) {
+      // If an error occurs, throw a ForbiddenException
       throw new ForbiddenException();
     }
   }
