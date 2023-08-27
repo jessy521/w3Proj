@@ -1,14 +1,14 @@
 # w3Proj
-**Dir**  
-  -backend(audio-backend) done with NestJs and Mongo
-  -frontend(audio-dashboard) done with React
+**Dir**<br />
+  -backend(audio-backend) done with NestJs and Mongo<br />
+  -frontend(audio-dashboard) done with React<br />
 
 > [!NOTE]
 > **backend is running on port 3001**
 > **frontend is running on port 3000**
 
 
-# To know about how to run the code and the required commands go requirements.txt
+### To know about how to run the code and the required commands go .dir-2/requirements.txt
 
 web view:
 <img width="1280" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/daeb1c88-c9bc-4ca0-9a12-2335a4a7dba0">
