@@ -11,7 +11,9 @@
 > **frontend is running on port 3000**
 <br/>
 <br/>
-### To know about how to run the code and the required commands go     ```./dir-2/requirements.txt```
+
+> [!NOTE]
+> ### To know about how to run the code and the required commands go     ```./dir-2/requirements.txt```
 
 web view:
 <img width="1280" alt="image" src="https://github.com/jessy521/w3Proj/assets/77335488/daeb1c88-c9bc-4ca0-9a12-2335a4a7dba0">
