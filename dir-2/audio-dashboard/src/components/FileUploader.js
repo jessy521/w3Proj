@@ -21,8 +21,14 @@ const FileUploader = ({ onUpload }) => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom:"25px" }}>
-      <input type="file" multiple accept="audio/*" onChange={handleFileChange} />
-      <button class="btn btn-primary btn-sm" onClick={handleUpload}>Upload</button>
+      <input type="file" multiple accept="audio/*" onChange={handleFileChange} required/>
+      <button
+        class="btn btn-primary btn-sm"
+        onClick={handleUpload}
+        disabled={selectedFiles.length === 0}>
+        Upload
+      </button>
+      {selectedFiles.length === 0 ? <h8>&nbsp;&nbsp;&nbsp;**select files to enable</h8> : <span></span>}
     </div>
   );
 };
