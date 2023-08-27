@@ -7,7 +7,8 @@
 > [!NOTE]
 > **backend is running on port 3001**
 > **frontend is running on port 3000**
-
+<br/>
+<br/>
 
 ### To know about how to run the code and the required commands go     ```./dir-2/requirements.txt```
 
