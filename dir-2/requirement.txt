@@ -8,6 +8,9 @@ backend:
         npm i
         npm run start:dev
 
+    APIs:-
+        http://localhost:3001/api/audio/*
+
 frontend:
     install packages: npm i
     run npm start
